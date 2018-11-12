@@ -64,6 +64,7 @@ Here is a list of dependencies
 - __Display Details for Tv Show__ - Display the details for a selected tv show from either *Today's or Popular* tv shows' list. Show Details when a tv show is clicked, using the DetailsActivity
 - __Select Favorite Tv Show__ - Add a tv show to favorites list in local db, when the *heart icon* is clicked on a tv show. Using the following components: AppDatabase, FavoriteTvShowDao, FavoriteTvShow
 - __View Favorite Tv Show__ - When the *Favorite* menu option from *MainActivity* is clicked, the list of selected fovrite tv shows should be displayed, using the following components: FavoriteActivity, TvShowAdapter, FavoriteTvShowDao (Note: user should also be able to view details when a tv show is clicked)
+- __Synchronize Favorite Shows__ Using the list of shows that have been added to favorites, use the intent service to get latest information on the shows. This service should run on two occasions, first, it should be executed every day, a scheduler could be used to schedule the action. secondly, it should be executed on boot, i.e. when the device is turned on, using the BootReceiver.
 - __Navigation Requirements__ - The navigation for the app should be setup like so: user should be able to go forward and back to calling activity as shown below.
     MainActivity
         <-> DetailsActivity 
