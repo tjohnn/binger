@@ -59,12 +59,12 @@ Here is a list of dependencies
 - [Room Presistence Library](https://developer.android.com/topic/libraries/architecture/room)
 
 ## Requirements (Compulsory)
-__Popular Shows__ - Display a list of popular tv shows using the following UI components; PopularShowFragment & TvShowAdapter
-__Display Today's Shows__ - Display a list of tv shows running on the current day using the following UI components: AiringTodayFragment & TvShowAdapter
-__Display Details for Tv Show__ - Display the details for a selected tv show from either *Today's or Popular* tv shows' list. Show Details when a tv show is clicked, using the DetailsActivity
-__Select Favorite Tv Show__ - Add a tv show to favorites list in local db, when the *heart icon* is clicked on a tv show. Using the following components: AppDatabase, FavoriteTvShowDao, FavoriteTvShow
-__View Favorite Tv Show__ - When the *Favorite* menu option from *MainActivity* is clicked, the list of selected fovrite tv shows should be displayed, using the following components: FavoriteActivity, TvShowAdapter, FavoriteTvShowDao (Note: user should also be able to view details when a tv show is clicked)
-__Navigation Requirements__ - The navigation for the app should be setup like so: user should be able to go forward and back to calling activity as shown below.
+- __Popular Shows__ - Display a list of popular tv shows using the following UI components; PopularShowFragment & TvShowAdapter
+- __Display Today's Shows__ - Display a list of tv shows running on the current day using the following UI components: AiringTodayFragment & TvShowAdapter
+- __Display Details for Tv Show__ - Display the details for a selected tv show from either *Today's or Popular* tv shows' list. Show Details when a tv show is clicked, using the DetailsActivity
+- __Select Favorite Tv Show__ - Add a tv show to favorites list in local db, when the *heart icon* is clicked on a tv show. Using the following components: AppDatabase, FavoriteTvShowDao, FavoriteTvShow
+- __View Favorite Tv Show__ - When the *Favorite* menu option from *MainActivity* is clicked, the list of selected fovrite tv shows should be displayed, using the following components: FavoriteActivity, TvShowAdapter, FavoriteTvShowDao (Note: user should also be able to view details when a tv show is clicked)
+- __Navigation Requirements__ - The navigation for the app should be setup like so: user should be able to go forward and back to calling activity as shown below.
     MainActivity
         <-> DetailsActivity 
         <-> FavoriteActivity <-> DetailActivity
