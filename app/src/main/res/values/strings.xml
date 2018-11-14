@@ -12,4 +12,5 @@
     <string name="title_favorites">Favorites</string>
     <string name="title_show_details">Tv Show Details</string>
     <string name="title_tv_shows">Tv Shows</string>
+    <string name="error_request">Error getting request</string>
 </resources>

@@ -1,5 +1,6 @@
 package ng.max.binger.data
 
+import com.google.gson.annotations.SerializedName
 import java.util.*
 
 
@@ -17,19 +18,32 @@ open class TvShow {
 
     var id = 0
 
+    @field:SerializedName("name")
     var name = ""
 
+    @field:SerializedName("total_pages")
+    var totalPages = 0
+
+    @field:SerializedName("popularity")
     var rating = 0f
 
+    @SerializedName("overview")
     var summary = ""
 
+    @field:SerializedName("vote_count")
     var voteCount = ""
 
+    @field:SerializedName("poster_path")
     var posterPath = ""
 
+    @field:SerializedName("backdrop_path")
     var backdropPath = ""
 
+    @field:SerializedName("first_air_date")
     var firstAirDate: Date? = Date()
+
+    @field:SerializedName("results")
+    var tvShowList:List<TvShow>? = null
 }
 
 open class Genre {
