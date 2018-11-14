@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -19,6 +21,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+     dataBinding{
+        enabled = true
     }
 }
 
@@ -37,6 +43,10 @@ dependencies {
     def retrofit_version = '2.3.0'
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    //logging interceptor
+    def logging_interceptor = '3.9.1'
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor"
 
     // glide v4
     def glide_version = "4.8.0"
