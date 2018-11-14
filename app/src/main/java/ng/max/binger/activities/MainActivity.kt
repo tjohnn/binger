@@ -1,11 +1,9 @@
 package ng.max.binger.activities
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.Menu
-import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import ng.max.binger.R
 import ng.max.binger.adapters.TvShowPagerAdapter
@@ -35,17 +33,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        //switch between multiple items
-        when(item!!.itemId){
-            R.id.action_favorite ->{
-                //launch FavoritesActivity onClick of favorite in overflow menu
-                startActivity( Intent(this, FavoritesActivity::class.java))
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     private fun getTitle(index: Int): String {
