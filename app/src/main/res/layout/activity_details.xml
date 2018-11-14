@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" >
-<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -62,9 +60,7 @@
 
             </LinearLayout>
 
-            <com.google.android.flexbox.FlexboxLayout
-
-                xmlns:android="http://schemas.android.com/apk/res/android"
+            <com.google.android.flexbox.FlexboxLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -82,12 +78,13 @@
                     android:text="@string/title_genres"
                     android:textStyle="bold" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerview_genre"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="vertical"
-                    />
+                <!--TODO remove includes and add items programmatically from the activity -->
+
+                <include layout="@layout/list_item_genre" />
+
+                <include layout="@layout/list_item_genre" />
+
+                <include layout="@layout/list_item_genre" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -98,11 +95,14 @@
                     android:text="@string/title_production_companies"
                     android:textStyle="bold" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/recyclerview_company_logo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="vertical" />
+                <!--TODO remove includes and add items programmatically from the activity -->
+
+                <include layout="@layout/list_item_production_company" />
+
+                <include layout="@layout/list_item_production_company" />
+
+                <include layout="@layout/list_item_production_company" />
+
 
             </com.google.android.flexbox.FlexboxLayout>
 
@@ -151,4 +151,3 @@
 
 
 </LinearLayout>
-</layout>
