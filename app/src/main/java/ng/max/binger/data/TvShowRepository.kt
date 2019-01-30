@@ -33,4 +33,6 @@ class TvShowRepository @Inject constructor(
 
     fun getFavoriteShows() = favoriteShowDao.getFavorites()
 
+    fun getFavoriteShowsSingle() = favoriteShowDao.getFavoriteShowsSingle()
+
 }

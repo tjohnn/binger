@@ -5,8 +5,7 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
 import android.arch.persistence.room.Update
 import io.reactivex.Flowable
-
-// TODO: implement sql queries for Favorites below
+import io.reactivex.Single
 
 @Dao
 interface FavoriteShowDao {
@@ -25,4 +24,7 @@ interface FavoriteShowDao {
 
     @Query("SELECT * FROM favorite_show")
     fun getFavorites(): Flowable<List<FavoriteShow>>
+
+    @Query("SELECT * FROM favorite_show")
+    fun getFavoriteShowsSingle(): Single<List<FavoriteShow>>
 }
