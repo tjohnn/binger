@@ -1,5 +1,6 @@
 package ng.max.binger.data
 
+import com.google.gson.annotations.SerializedName
 import java.util.*
 
 
@@ -13,14 +14,27 @@ class PagedList<T> {
     var totalPages = 0
 }
 
-open class TvShow {
+open class TvShow() {
+
+    constructor(fav: FavoriteShow): this() {
+        id = fav.tvShowId
+
+        name = fav.name
+        summary = fav.summary
+        firstAirDate = fav.firstAirDate
+        rating = fav.rating
+        posterPath = fav.posterPath
+        isFavorite = true
+    }
 
     var id = 0
 
     var name = ""
 
+    @SerializedName("vote_average")
     var rating = 0f
 
+    @SerializedName("overview")
     var summary = ""
 
     var voteCount = ""
@@ -30,6 +44,13 @@ open class TvShow {
     var backdropPath = ""
 
     var firstAirDate: Date? = Date()
+
+    var isFavorite: Boolean = false
+    override fun toString(): String {
+        return "TvShow(id=$id, name='$name', rating=$rating, summary='$summary', voteCount='$voteCount', posterPath='$posterPath', backdropPath='$backdropPath', firstAirDate=$firstAirDate, isFavorite=$isFavorite)"
+    }
+
+
 }
 
 open class Genre {

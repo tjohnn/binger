@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-kapt'
+
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -38,6 +40,14 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
+    // retrofit logger
+    def okhttp_logger_version = '3.6.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_logger_version"
+
+    // architecture lifecycle
+    def lifecycle_extension_version = '1.1.1'
+    implementation "android.arch.lifecycle:extensions:$lifecycle_extension_version"
+
     // glide v4
     def glide_version = "4.8.0"
     implementation "com.github.bumptech.glide:glide:$glide_version"
@@ -51,10 +61,17 @@ dependencies {
     def arch_room_version = '1.1.1'
     implementation "android.arch.persistence.room:runtime:$arch_room_version"
     kapt "android.arch.persistence.room:compiler:$arch_room_version"
+    // RxJava support for Room
+    implementation "android.arch.persistence.room:rxjava2:$arch_room_version"
+    kapt "android.arch.persistence.room:compiler:$arch_room_version"
 
     // RxJava library and RxAndroid for Android specific bindings
     implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+
+    // rxjava adapter for retrofit
+    def retrofit_rxjava_version = '1.0.0'
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$retrofit_rxjava_version"
 
 
     // dagger version

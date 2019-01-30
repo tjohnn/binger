@@ -1,16 +1,18 @@
 package ng.max.binger.activities
 
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.Menu
+import android.view.MenuItem
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import ng.max.binger.R
 import ng.max.binger.adapters.TvShowPagerAdapter
 import ng.max.binger.fragments.AiringTodayFragment
 import ng.max.binger.fragments.PopularShowsFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,14 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val id = item?.itemId
+        if(id == R.id.action_favorite){
+            startActivity(Intent(this, FavoritesActivity::class.java))
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun getTitle(index: Int): String {
         // get the title for the tab
         val titleId = when (index) {
@@ -46,7 +56,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getFragment(index: Int): Fragment {
-        // get fragment for the tab
+        // get acti for the tab
         return when (index) {
             0 -> AiringTodayFragment.newInstance()
             else -> PopularShowsFragment.newInstance()

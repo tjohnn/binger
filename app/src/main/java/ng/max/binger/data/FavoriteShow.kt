@@ -38,4 +38,33 @@ data class FavoriteShow(@PrimaryKey(autoGenerate = false)
                         var latestEpisode: Int = 0,
 
                         @ColumnInfo(name = "first_air_date")
-                        var firstAirDate: Date? = Date())
+                        var firstAirDate: Date? = Date()) {
+
+    @Ignore
+    constructor(tvShow: TvShow) : this(){
+        id = tvShow.id
+        tvShowId = tvShow.id
+        name = tvShow.name
+        rating = tvShow.rating
+        summary = tvShow.summary
+        voteCount = tvShow.voteCount
+        posterPath = tvShow.posterPath
+        backdropPath = tvShow.backdropPath
+        firstAirDate = tvShow.firstAirDate
+    }
+
+    @Ignore
+    constructor(tvShow: TvShowDetail) : this(){
+        id = tvShow.id
+        tvShowId = tvShow.id
+        name = tvShow.name
+        rating = tvShow.rating
+        summary = tvShow.summary
+        voteCount = tvShow.voteCount
+        posterPath = tvShow.posterPath
+        backdropPath = tvShow.backdropPath
+        latestSeason = tvShow.numberOfSeasons
+        latestEpisode = tvShow.seasons.get(tvShow.seasons.size - 1).episodeCount
+        firstAirDate = tvShow.firstAirDate
+    }
+}
