@@ -10,8 +10,8 @@ class BootReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         // This method is called when the BroadcastReceiver is receiving an Intent broadcast.
-        val intent = Intent(context, SyncService::class.java)
-        context.startService(intent)
+        val intent1 = Intent(context, SyncService::class.java)
+        context.startService(intent1)
         Toast.makeText(context, "Service started", Toast.LENGTH_SHORT).show()
     }
 }
