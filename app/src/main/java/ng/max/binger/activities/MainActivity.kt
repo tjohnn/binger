@@ -11,6 +11,7 @@ import ng.max.binger.R
 import ng.max.binger.adapters.TvShowPagerAdapter
 import ng.max.binger.fragments.AiringTodayFragment
 import ng.max.binger.fragments.PopularShowsFragment
+import ng.max.binger.services.SyncService
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -30,6 +31,9 @@ class MainActivity : DaggerAppCompatActivity() {
 
         // setup tab layout with view pager.
         tabLayout.setupWithViewPager(viewPager)
+
+        val intent1 = Intent(this, SyncService::class.java)
+        startService(intent1)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
