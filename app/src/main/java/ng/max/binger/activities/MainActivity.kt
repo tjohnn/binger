@@ -32,8 +32,6 @@ class MainActivity : DaggerAppCompatActivity() {
         // setup tab layout with view pager.
         tabLayout.setupWithViewPager(viewPager)
 
-        val intent1 = Intent(this, SyncService::class.java)
-        startService(intent1)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
