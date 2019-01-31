@@ -63,6 +63,8 @@ class TvShowsAdapter(val acti: AppCompatActivity, val mListener: OnTvShowItemLis
                 }
                 if(tvShow.isFavorite){
                     likeButton.setImageResource(R.drawable.ic_favorite)
+                } else{
+                    likeButton.setImageResource(R.drawable.ic_favorite_holo)
                 }
                 GlideApp.with(acti)
                         .load(POSTERS_BASE_URL + POSTERS_W_185 + tvShow.posterPath)

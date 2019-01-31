@@ -22,11 +22,14 @@ class SyncService : DaggerIntentService("SyncService") {
 
     override fun onHandleIntent(intent: Intent?) {
         compositeDisposable.add(
-                tvShowRepository.getFavoriteShows()
+                tvShowRepository.getFavoriteShowsSingle()
+                        .toFlowable()
                         .flatMapIterable { it }
-                        .forEach{
+                        .subscribe( {
                             loadShowDetail(it)
-                        }
+                        }, {
+
+                        })
         )
     }
 
@@ -35,6 +38,7 @@ class SyncService : DaggerIntentService("SyncService") {
         compositeDisposable.add(
                 tvShowRepository.getShowById(tvShow.tvShowId)
                         .subscribe({
+                            Log.d("LOG_TAG", "Show fetched: ${it.name}")
                             updateFavoriteDetail(FavoriteShow(it))
                         }, {}))
 

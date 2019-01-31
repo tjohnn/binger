@@ -107,6 +107,7 @@ class PopularShowsViewModel @Inject constructor(
             favorites.value?.forEach{
                 if(it.tvShowId == tvShow.id){
                     tvShow.isFavorite = true
+                    Log.d("LOG_TAG", "${it.tvShowId} == ${tvShow.id} name ${tvShow.name}")
                     return tvShow
                 }
             }
