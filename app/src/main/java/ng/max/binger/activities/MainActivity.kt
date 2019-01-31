@@ -45,7 +45,7 @@ class MainActivity : DaggerAppCompatActivity() {
         val intent = Intent(this, SyncService::class.java)
         val pendingIntent = PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT)
         val alarm = getSystemService(ALARM_SERVICE) as AlarmManager
-        val nextOneDay: Long = 24 + 60 + 60 + 1000
+        val nextOneDay: Long = 24 * 60 * 60 * 1000
         alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.timeInMillis + nextOneDay, nextOneDay, pendingIntent)
     }
 
