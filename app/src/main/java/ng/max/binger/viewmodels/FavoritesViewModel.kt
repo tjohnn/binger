@@ -10,6 +10,7 @@ import ng.max.binger.data.FavoriteShow
 import ng.max.binger.data.TvShow
 import ng.max.binger.data.TvShowRepository
 import ng.max.binger.utils.AppSchedulers
+import ng.max.binger.utils.EspressoIdlingResource
 import ng.max.binger.utils.EventWrapper
 import ng.max.binger.utils.Utils
 import javax.inject.Inject
@@ -39,6 +40,8 @@ class FavoritesViewModel @Inject constructor(
 
 
     private fun loadFavorites() {
+        EspressoIdlingResource.increment()
+        var shouldDecrement = true
         compositeDisposable.add(
                 tvShowRepository.getFavoriteShows()
                         .subscribeOn(appSchedulers.io())
@@ -49,20 +52,31 @@ class FavoritesViewModel @Inject constructor(
                                 shows.add(TvShow(it))
                             }
                             favorites.postValue(shows)
-                            Log.d("LOG_TAG", shows.toString())
+                            if(shouldDecrement){
+                                EspressoIdlingResource.decrement()
+                                shouldDecrement = false
+                            }
                         },{
                             snackBarMessage.postValue(EventWrapper(it.message))
+                            if(shouldDecrement){
+                                EspressoIdlingResource.decrement()
+                                shouldDecrement = false
+                            }
                         })
         )
     }
 
     fun unlikeMovie(movieId: Int){
-
+        EspressoIdlingResource.increment()
         compositeDisposable.add(
                 tvShowRepository.removeFavoriteShow(movieId)
                         .subscribeOn(appSchedulers.io())
                         .observeOn(appSchedulers.main())
-                        .subscribe()
+                        .subscribe({
+                            EspressoIdlingResource.decrement()
+                        },{
+                            EspressoIdlingResource.decrement()
+                        })
         )
 
 

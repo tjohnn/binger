@@ -10,6 +10,7 @@ import ng.max.binger.data.TvShow
 import ng.max.binger.data.TvShowDetail
 import ng.max.binger.data.TvShowRepository
 import ng.max.binger.utils.AppSchedulers
+import ng.max.binger.utils.EspressoIdlingResource
 import ng.max.binger.utils.EventWrapper
 import ng.max.binger.utils.Utils
 import javax.inject.Inject
@@ -42,7 +43,7 @@ class DetailsViewModel @Inject constructor(
 
 
     fun loadMovieDetail(showId: Int){
-
+        EspressoIdlingResource.increment()
         compositeDisposable.add(
                 tvShowRepository.getShowById(showId)
                         .subscribeOn(appSchedulers.io())
@@ -52,8 +53,10 @@ class DetailsViewModel @Inject constructor(
                         .doOnError{isLoading.postValue(false)}
                         .subscribe({
                             tvShowDetail.value = it
+                            EspressoIdlingResource.decrement()
                         }, {
                             snackBarMessage.value = EventWrapper(Utils.processNetworkError(it))
+                            EspressoIdlingResource.decrement()
                         }))
 
     }

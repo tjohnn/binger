@@ -9,6 +9,7 @@ import ng.max.binger.data.FavoriteShow
 import ng.max.binger.data.TvShow
 import ng.max.binger.data.TvShowRepository
 import ng.max.binger.utils.AppSchedulers
+import ng.max.binger.utils.EspressoIdlingResource
 import ng.max.binger.utils.EventWrapper
 import ng.max.binger.utils.Utils
 import javax.inject.Inject
@@ -84,6 +85,7 @@ class AiringTodayViewModel @Inject constructor(
 
 
     private fun loadTodayTvShows(page: Int) {
+        EspressoIdlingResource.increment()
         compositeDisposable.add(
                 tvShowRepository.getTvShowsAiringToday(page)
                         .map {
@@ -112,9 +114,11 @@ class AiringTodayViewModel @Inject constructor(
                             val list = tvShows.value ?: arrayListOf()
                             list.addAll(it)
                             tvShows.value = list
+                            EspressoIdlingResource.decrement()
 
                         }, {
                             snackBarMessage.value = EventWrapper(Utils.processNetworkError(it))
+                            EspressoIdlingResource.decrement()
                         }))
 
     }
