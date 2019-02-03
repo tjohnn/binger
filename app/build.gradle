@@ -88,6 +88,20 @@ dependencies {
     implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:$rx_binding_version"
     implementation "com.jakewharton.rxbinding2:rxbinding-design-kotlin:$rx_binding_version"
 
+    // Android Testing Support Library's runner and rules
+    def runner_version = '1.0.1'
+    androidTestImplementation "com.android.support.test:runner:$runner_version"
+    def rules_version = '1.0.1'
+    androidTestImplementation "com.android.support.test:rules:$rules_version"
+
+    // Espresso UI Testing
+    def espresso_version = '3.0.2'
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espresso_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$espresso_version"
+    androidTestImplementation "com.android.support.test.espresso.idling:idling-concurrent:$espresso_version"
+    implementation "com.android.support.test.espresso:espresso-idling-resource:$espresso_version"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'

@@ -67,7 +67,8 @@ class PopularShowsFragment: DaggerFragment(), TvShowsAdapter.OnTvShowItemListene
         showsRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
 
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (mViewModel.isLoading.value != true && !recyclerView.canScrollVertically(1)) {
+                if (mViewModel.getIsLoading().value != true && mViewModel.getIsLoadingMore().value != true
+                        && !recyclerView.canScrollVertically(1)) {
                     mViewModel.loadNextPage()
                 }
             }
@@ -76,11 +77,11 @@ class PopularShowsFragment: DaggerFragment(), TvShowsAdapter.OnTvShowItemListene
     }
 
     private fun subscribeToViewModel() {
-        mViewModel.tvShows.observe(this, Observer{ shows ->
+        mViewModel.getTvShows().observe(this, Observer{ shows ->
             adapter.updateData(shows as ArrayList<TvShow>)
         })
 
-        mViewModel.snackBarMessage.observe(this, Observer { it ->
+        mViewModel.getSnackBarMessage().observe(this, Observer { it ->
             it?.getContentIfNotHandled()?.run {
                 Snackbar.make(mActivity.findViewById(android.R.id.content), this, Snackbar.LENGTH_LONG).show()
             }

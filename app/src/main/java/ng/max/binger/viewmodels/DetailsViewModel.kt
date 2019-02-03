@@ -2,6 +2,7 @@ package ng.max.binger.viewmodels
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import io.reactivex.disposables.CompositeDisposable
 import ng.max.binger.data.FavoriteShow
@@ -20,10 +21,23 @@ class DetailsViewModel @Inject constructor(
 ) : AndroidViewModel(app) {
 
 
-    var isLoading: MutableLiveData<Boolean> = MutableLiveData()
-    var tvShowDetail: MutableLiveData<TvShowDetail> = MutableLiveData()
-    var snackBarMessage: MutableLiveData<EventWrapper<String>> = MutableLiveData()
+    private var isLoading: MutableLiveData<Boolean> = MutableLiveData()
+    private var tvShowDetail: MutableLiveData<TvShowDetail> = MutableLiveData()
+    private var snackBarMessage: MutableLiveData<EventWrapper<String>> = MutableLiveData()
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
+
+
+    fun getIsLoading(): LiveData<Boolean> {
+        return isLoading
+    }
+
+    fun getSnackBarMessage(): LiveData<EventWrapper<String>> {
+        return snackBarMessage
+    }
+
+    fun getTvShowDetail(): LiveData<TvShowDetail> {
+        return tvShowDetail
+    }
 
 
 

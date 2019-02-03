@@ -2,6 +2,7 @@ package ng.max.binger.viewmodels
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import io.reactivex.disposables.CompositeDisposable
@@ -20,11 +21,11 @@ class PopularShowsViewModel @Inject constructor(
 ) : AndroidViewModel(app) {
 
 
-    var isLoading: MutableLiveData<Boolean> = MutableLiveData()
-    var isLoadingMore: MutableLiveData<Boolean> = MutableLiveData()
-    var tvShows: MutableLiveData<ArrayList<TvShow>> = MutableLiveData()
-    var favorites: MutableLiveData<List<FavoriteShow>> = MutableLiveData()
-    var snackBarMessage: MutableLiveData<EventWrapper<String>> = MutableLiveData()
+    private var isLoading: MutableLiveData<Boolean> = MutableLiveData()
+    private var isLoadingMore: MutableLiveData<Boolean> = MutableLiveData()
+    private var tvShows: MutableLiveData<ArrayList<TvShow>> = MutableLiveData()
+    private var favorites = MutableLiveData<List<FavoriteShow>>()
+    private var snackBarMessage: MutableLiveData<EventWrapper<String>> = MutableLiveData()
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
     private var currentPage: Int = 0
     private var totalPages: Int = 0
@@ -33,6 +34,24 @@ class PopularShowsViewModel @Inject constructor(
         loadFavorites()
         loadFirstPage()
     }
+
+    fun getIsLoading(): LiveData<Boolean> {
+        return isLoading
+    }
+
+    fun getIsLoadingMore(): LiveData<Boolean> {
+        return isLoadingMore
+    }
+
+    fun getSnackBarMessage(): LiveData<EventWrapper<String>> {
+        return snackBarMessage
+    }
+
+    fun getTvShows(): LiveData<ArrayList<TvShow>> {
+        return tvShows
+    }
+
+
 
     private fun loadFavorites() {
         compositeDisposable.add(

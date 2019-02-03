@@ -2,6 +2,7 @@ package ng.max.binger.viewmodels
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
+import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import io.reactivex.disposables.CompositeDisposable
@@ -20,22 +21,31 @@ class FavoritesViewModel @Inject constructor(
 ) : AndroidViewModel(app) {
 
 
-    var favorites: MutableLiveData<List<TvShow>> = MutableLiveData()
-    var snackBarMessage: MutableLiveData<EventWrapper<String>> = MutableLiveData()
+    private var favorites: MutableLiveData<List<TvShow>> = MutableLiveData()
+    private var snackBarMessage: MutableLiveData<EventWrapper<String>> = MutableLiveData()
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     init {
         loadFavorites()
     }
 
+    fun getFavorites(): LiveData<List<TvShow>> {
+        return favorites
+    }
+
+    fun getSnackBarMessage(): LiveData<EventWrapper<String>> {
+        return snackBarMessage
+    }
+
+
     private fun loadFavorites() {
         compositeDisposable.add(
                 tvShowRepository.getFavoriteShows()
                         .subscribeOn(appSchedulers.io())
                         .observeOn(appSchedulers.main())
-                        .subscribe({
+                        .subscribe({ list ->
                             val shows: ArrayList<TvShow> = arrayListOf()
-                            it.forEach{
+                            list.forEach{
                                 shows.add(TvShow(it))
                             }
                             favorites.postValue(shows)

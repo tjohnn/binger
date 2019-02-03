@@ -48,7 +48,7 @@ class DetailsActivity : DaggerAppCompatActivity() {
     }
 
     private fun subscribeToViewModel() {
-        mViewModel.tvShowDetail.observe(this, Observer {i ->
+        mViewModel.getTvShowDetail().observe(this, Observer {i ->
             i?.let {show ->
                 show.let {
 
@@ -69,7 +69,7 @@ class DetailsActivity : DaggerAppCompatActivity() {
             }
         })
 
-        mViewModel.snackBarMessage.observe(this, Observer { it ->
+        mViewModel.getSnackBarMessage().observe(this, Observer { it ->
             it?.getContentIfNotHandled()?.run {
                 Snackbar.make(findViewById(android.R.id.content), this, Snackbar.LENGTH_LONG).show()
             }

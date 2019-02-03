@@ -65,11 +65,11 @@ class FavoritesActivity : DaggerAppCompatActivity() , TvShowsAdapter.OnTvShowIte
     }
 
     private fun subscribeToViewModel() {
-        mViewModel.favorites.observe(this, Observer{ shows ->
+        mViewModel.getFavorites().observe(this, Observer{ shows ->
             adapter.updateData(shows as ArrayList<TvShow>)
         })
 
-        mViewModel.snackBarMessage.observe(this, Observer { it ->
+        mViewModel.getSnackBarMessage().observe(this, Observer { it ->
             it?.getContentIfNotHandled()?.run {
                 Snackbar.make(findViewById(android.R.id.content), this, Snackbar.LENGTH_LONG).show()
             }
